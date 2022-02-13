@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<h1>{{ pu.user.username }}'s Dashboard</h1>
+<h3>Organization name : {{ organization }}</h3>
+<table border="1">
+    <th>Name</th>
+    <th>Image</th>
+    <th>University</th>
+    <th>Qualifications</th>
+    <th>Skills</th>
+    <th>GPA</th>
+    <th>About</th>
+
+    {% for profile in profiles %}
+        <tr>
+            <td>{{ profile.name }}</td>
+            <td><img src="{{ profile.picture.url }}" alt=""></td>
+            <td>{{ profile.university }}</td>
+            <td>{{ profile.qualifications }}</td>
+            <td>{{ profile.skills }}</td>
+            <td>{{ profile.gpa }}</td>
+            <td>{{ profile.about }}</td>
+        </tr>
+    {% empty %}
+        No Profiles to show
+    {% endfor %}
+</table>
+<br><br>
+<a href="{% url 'cms:pu_add_profile' %}">
+    <button>Add a profile</button>
+</a>
+<br>
+<a href="{% url 'cms:emp_logout' %}">
+    <button>Logout</button>
+</a>
+</body>
+</html>

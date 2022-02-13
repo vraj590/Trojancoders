@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job</title>
+</head>
+<body>
+<h1>{{ company.user.organization_name }}'s job openings</h1>
+<br>
+<br>
+<div>
+    <li><b>Position : </b>{{ job.position }}</li>
+    <li><b>Salary : </b>{{ job.salary }}</li>
+    <li><b>Vacancies : </b>{{ job.vacancy }}</li>
+</div>
+<br>
+<br>
+<h1>Candidates available</h1>
+<table border="1">
+    <th>Name</th>
+    <th>Image</th>
+    <th>University</th>
+    <th>Qualifications</th>
+    <th>Skills</th>
+    <th>GPA</th>
+    <th>About</th>
+
+    {% for profile in profiles %}
+        <tr>
+            <td>{{ profile.name }}</td>
+            <td><img src="{{ profile.picture.url }}" alt=""></td>
+            <td>{{ profile.university }}</td>
+            <td>{{ profile.qualifications }}</td>
+            <td>{{ profile.skills }}</td>
+            <td>{{ profile.gpa }}</td>
+            <td>{{ profile.about }}</td>
+            <td>
+                <form method="POST">{% csrf_token %}
+                    <button name="name" value='{{ profile.name }}'>Shortlist</button>
+                </form>
+            </td>
+        </tr>
+    {% empty %}
+        No Profiles to show
+    {% endfor %}
+</table>
+<br>
+<br>
+<table border="1">
+    <th>Name</th>
+    <th>Image</th>
+    <th>University</th>
+    <th>Qualifications</th>
+    <th>Skills</th>
+    <th>GPA</th>
+    <th>About</th>
+    {% for shortlist in shortlisted %}
+        <tr>
+            <td>{{ shortlist.profile.name }}</td>
+            <td><img src="{{ shortlist.profile.picture.url }}" alt=""></td>
+            <td>{{ shortlist.profile.university }}</td>
+            <td>{{ shortlist.profile.qualifications }}</td>
+            <td>{{ shortlist.profile.skills }}</td>
+            <td>{{ shortlist.profile.gpa }}</td>
+            <td>{{ shortlist.profile.about }}</td>
+        </tr>
+    {% empty %}
+        No Profiles to show
+    {% endfor %}
+</table>
+<br>
+<a href="{% url 'cms:comp_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Home</h1>
+<br>
+<a href="{% url 'cms:emp_login' %}">
+    <button name="employee_login">PU login</button>
+</a>
+<a href="{% url 'cms:emp_signup' %}">
+    <button name="employee_signup">PU signup</button>
+</a>
+<a href="{% url 'cms:comp_login' %}">
+    <button name="company_login">Company login</button>
+</a>
+<a href="{% url 'cms:comp_signup' %}">
+    <button name="company_signup">Company signup</button>
+</a>
+</body>
+</html>

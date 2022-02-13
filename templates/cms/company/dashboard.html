@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<h1>{{ company.user.username }}'s Dashboard</h1>
+<h3>Organization name : {{ organization }}</h3>
+{% comment %}
+<table border="1">
+    <th>Name</th>
+    <th>Image</th>
+    <th>University</th>
+    <th>Qualifications</th>
+    <th>Skills</th>
+    <th>GPA</th>
+    <th>About</th>
+
+    {% for profile in profiles %}
+        <tr>
+            <td>{{ profile.name }}</td>
+            <td><img src="{{ profile.picture.url }}" alt=""></td>
+            <td>{{ profile.university }}</td>
+            <td>{{ profile.qualifications }}</td>
+            <td>{{ profile.skills }}</td>
+            <td>{{ profile.gpa }}</td>
+            <td>{{ profile.about }}</td>
+        </tr>
+    {% empty %}
+        No Profiles to show
+    {% endfor %}
+</table>
+{% endcomment %}
+<table border="1">
+    <th>Position</th>
+    <th>Salary</th>
+    {% for job in jobs %}
+        <tr>
+            <td>{{ job.position }}</td>
+            <td>{{ job.salary }}</td>
+            <td><a href="{% url 'cms:comp_job_detail' job %}">
+                <button>Details</button>
+            </a></td>
+        </tr>
+    {% endfor %}
+</table>
+<br><br>
+<a href="{% url 'cms:comp_add_job' %}">
+    <button>Add a Job posting</button>
+</a>
+<br><br>
+<a href="{% url 'cms:comp_logout' %}">
+    <button>Logout</button>
+</a>
+</body>
+</html>
